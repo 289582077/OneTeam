@@ -82,6 +82,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.ll_my_collect:
+
                 break;
             case R.id.ll_my_feedback:
                 break;
