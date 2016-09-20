@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xcc.advancedday13.SettingActivity">
+    <LinearLayout
+        android:background="@color/tool_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_height">
+        <ImageButton
+            android:background="@color/tool_color"
+            android:src="@mipmap/default_back_icon"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_size"
+            android:text="设置"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        android:text="基本设置"
+        android:paddingLeft="@dimen/et_padding"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_height" />
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <TextView
+            android:text="消息推送设置"
+            android:gravity="center_vertical"
+            android:textColor="@color/tv_color_black"
+            android:textSize="@dimen/tv_size"
+            android:paddingLeft="@dimen/et_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:id="@+id/cb_setting"
+            android:focusable="false"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/et_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+
+        <TextView
+            android:text="清楚缓存"
+            android:textColor="@color/tv_color_black"
+            android:textSize="@dimen/tv_size"
+            android:paddingLeft="@dimen/et_padding"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/child_height" />
+        <TextView
+            android:text="约0.0M"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/et_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <TextView
+        android:text="黑科技小视频"
+        android:textColor="@color/tv_color_black"
+        android:textSize="@dimen/tv_size"
+        android:paddingLeft="@dimen/et_padding"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/child_height" />
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <TextView
+        android:text="检查更新"
+        android:paddingLeft="@dimen/et_padding"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/tv_size"
+        android:textColor="@color/tv_color_black"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/child_height" />
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+</LinearLayout>

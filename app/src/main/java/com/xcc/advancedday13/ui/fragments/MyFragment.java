@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.xcc.advancedday13.R;
+import com.xcc.advancedday13.SettingActivity;
 import com.xcc.advancedday13.base.BaseFragment;
 import com.xcc.advancedday13.ui.FeedBackActivity;
 import com.xcc.advancedday13.ui.LoginActivity;
@@ -91,6 +92,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.ll_my_set:
+                Intent intent2 = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.ll_my_order:
                 break;

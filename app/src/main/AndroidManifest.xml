@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.FeedBackActivity"></activity>
+        <activity android:name=".ui.FeedBackActivity" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>
