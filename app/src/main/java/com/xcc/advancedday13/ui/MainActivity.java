@@ -10,6 +10,7 @@ import com.xcc.advancedday13.adapters.MainViewPagerAdapter;
 import com.xcc.advancedday13.base.BaseActivity;
 import com.xcc.advancedday13.ui.fragments.MyFragment;
 import com.xcc.advancedday13.ui.fragments.StrategyFragment;
+import com.xcc.advancedday13.ui.fragments.TravelsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,20 @@ public class MainActivity extends BaseActivity {
     }
 
     private List<Fragment> getData() {
-            List<Fragment> data=new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            StrategyFragment strategyFragment = new StrategyFragment();
-            data.add(strategyFragment);
-        }
+        List<Fragment> data=new ArrayList<>();
+        //第一个Fragment
+        StrategyFragment strategyFragment = new StrategyFragment();
+        data.add(strategyFragment);
+
+        //第二个Fragment
+        TravelsFragment travelsFragment = new TravelsFragment();
+        data.add(travelsFragment);
+
+        //第三个Fragment
+        StrategyFragment strategyFragment1 = new StrategyFragment();
+        data.add(strategyFragment1);
+
+        //第四个Fragment
         MyFragment myFragment = new MyFragment();
         data.add(myFragment);
         return data;
