@@ -3,6 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="my_divider_color">#d9d2d2</color>
+    <color name="white">#00ffffff</color>
+    <color name="tool_color">#00ffff</color>
+    <color name="pop_bg">#ffffff</color>
     <color name="travels_recycler_item_name_color" >#f607c0d9</color>
     <color name="button_color" >#43935a</color>
     <color name="white">#ffffff</color>

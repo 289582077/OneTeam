@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xcc.advancedday13.ui.LoginActivity">
+    <LinearLayout
+        android:background="@color/tool_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_height">
+        <ImageButton
+            android:background="@color/tool_color"
+            android:src="@mipmap/default_back_icon"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_size"
+            android:text="登录携程账号"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <EditText
+        android:layout_margin="@dimen/et_padding"
+        android:hint="携程注册邮箱或手机号码"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:layout_margin="@dimen/et_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_margin="@dimen/et_padding"
+        android:text="登录"
+        android:background="@drawable/btn_bg"
+        android:textSize="@dimen/tv_size"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height" />
+    <RelativeLayout
+        android:layout_margin="@dimen/et_padding"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <TextView
+            android:id="@+id/wu"
+            android:text="没有携程账号？"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="在此注册"
+            android:gravity="center_vertical"
+            android:textColor="@color/tool_color"
+            android:layout_toRightOf="@+id/wu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="忘记密码？"
+            android:gravity="center_vertical"
+            android:textColor="@color/tool_color"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</LinearLayout>

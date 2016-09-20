@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.adapters.MainViewPagerAdapter;
 import com.xcc.advancedday13.base.BaseActivity;
+import com.xcc.advancedday13.ui.fragments.MyFragment;
 import com.xcc.advancedday13.ui.fragments.StrategyFragment;
 
 import java.util.ArrayList;
@@ -41,11 +42,12 @@ public class MainActivity extends BaseActivity {
 
     private List<Fragment> getData() {
             List<Fragment> data=new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             StrategyFragment strategyFragment = new StrategyFragment();
             data.add(strategyFragment);
         }
-
+        MyFragment myFragment = new MyFragment();
+        data.add(myFragment);
         return data;
     }
 }

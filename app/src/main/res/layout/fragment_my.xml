@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="我的游记"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_height" />
+    <LinearLayout
+        android:id="@+id/ll_my_login"
+        android:padding="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_height">
+        <ImageView
+            android:id="@+id/iv_user"
+            android:src="@mipmap/home_user_place_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_my_user_name"
+            android:text="未登录"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <View
+            android:layout_width="@dimen/space_view_width"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/ib_my_notification"
+            android:background="@color/white"
+            android:src="@mipmap/menu_message_n"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:id="@+id/ib_my_more"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@color/white"
+            android:src="@mipmap/icon_plan_more"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <TextView
+        android:text="社区"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_height" />
+    <LinearLayout
+        android:id="@+id/ll_my_collect"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <ImageButton
+            android:src="@mipmap/icon_list_fav"
+            android:background="@color/white"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="@dimen/child_height" />
+        <TextView
+            android:id="@+id/tv_my_fav"
+            android:text="我的收藏"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/child_height" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_my_order"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <ImageButton
+            android:src="@mipmap/icon_ctrip_order"
+            android:background="@color/white"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="@dimen/child_height" />
+        <TextView
+            android:id="@+id/tv_my_travel"
+            android:text="我的携程订单"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/child_height" />
+    </LinearLayout>
+    <View
+        android:background="@color/my_divider_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"/>
+    <TextView
+        android:text="其他"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_height" />
+    <LinearLayout
+        android:id="@+id/ll_my_feedback"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <ImageButton
+            android:src="@mipmap/icon_my_feedback"
+            android:background="@color/white"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="@dimen/child_height" />
+        <TextView
+            android:text="意见反馈"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/child_height" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_my_set"
+        android:paddingLeft="@dimen/my_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/child_height">
+        <ImageButton
+            android:src="@mipmap/icon_setting"
+            android:background="@color/white"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="@dimen/child_height" />
+        <TextView
+            android:text="设置"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/child_height" />
+    </LinearLayout>
+</LinearLayout>
