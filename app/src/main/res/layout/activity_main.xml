@@ -10,12 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_margin="8dp"
-            android:drawableLeft="@mipmap/ic_launcher"
+            android:padding="8dp"
+            android:drawableLeft="@mipmap/icon_search"
             android:hint="搜索目的地、游记与用户"
+            android:gravity="center_vertical"
             android:background="#ffffff"
             />
 

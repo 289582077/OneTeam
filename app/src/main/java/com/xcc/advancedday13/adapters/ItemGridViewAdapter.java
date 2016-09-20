@@ -53,10 +53,11 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (data.get(position).getName()!=null) {
 
-            holder.name.setText(data.get(position).getName());
-        }
+
+        holder.name.setText(data.get(position).getName());
+        holder.name_en.setText(data.get(position).getName_en());
+
         if (data.get(position).getPhoto_url()!=null) {
 
             Picasso.with(context).load(data.get(position).getPhoto_url()).into(holder.image);
@@ -69,11 +70,13 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
     public  static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         TextView name;
+        TextView name_en;
 
         public ViewHolder(View itemView) {
             super(itemView);
             image= (ImageView) itemView.findViewById(R.id.strategy_item_gv_item_image);
             name= (TextView) itemView.findViewById(R.id.strategy_item_gv_item_name);
+            name_en= (TextView) itemView.findViewById(R.id.strategy_item_gv_item_name_en);
         }
     }
 }
