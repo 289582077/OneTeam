@@ -5,4 +5,9 @@
     android:background="#00ffff"
     android:orientation="vertical">
 
+    <com.lhh.ptrrv.library.PullToRefreshRecyclerView
+        android:id="@+id/fragment_strategy_ptrrv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
