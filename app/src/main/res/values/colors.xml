@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="travels_recycler_item_name_color" >#f607c0d9</color>
+    <color name="button_color" >#43935a</color>
+    <color name="white">#ffffff</color>
 </resources>

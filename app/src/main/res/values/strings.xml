@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Travel</string>
     <string name="text_default">null</string>
+    <string name="travels_from_1">来自</string>
+    <string name="travels_from_2">推荐</string>
+    <string name="text_read_all">查看全文</string>
 </resources>
