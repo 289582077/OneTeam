@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity {
     private ViewPager mViewPager;
     private MainViewPagerAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
