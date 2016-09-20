@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.base.BaseFragment;
+import com.xcc.advancedday13.ui.FeedBackActivity;
 import com.xcc.advancedday13.ui.LoginActivity;
 
 /**
@@ -40,6 +41,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         pw.setBackgroundDrawable(drawable);
         pw.setWidth(widthPixels/2);
         pw.setHeight(heightPixels/5);
+        pw.setFocusable(true);
         pw.setContentView(popView);
         return layout;
     }
@@ -85,6 +87,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
 
                 break;
             case R.id.ll_my_feedback:
+                Intent intent1 = new Intent(getActivity(), FeedBackActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.ll_my_set:
                 break;

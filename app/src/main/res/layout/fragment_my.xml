@@ -30,7 +30,7 @@
             android:layout_height="match_parent"/>
         <ImageButton
             android:id="@+id/ib_my_notification"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:src="@mipmap/menu_message_n"
             android:layout_width="@dimen/ib_width"
             android:layout_height="match_parent" />
@@ -38,7 +38,7 @@
             android:id="@+id/ib_my_more"
             android:focusable="true"
             android:clickable="true"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:src="@mipmap/icon_plan_more"
             android:layout_width="@dimen/ib_width"
             android:layout_height="match_parent" />
@@ -60,7 +60,7 @@
         android:layout_height="@dimen/child_height">
         <ImageButton
             android:src="@mipmap/icon_list_fav"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:layout_width="@dimen/ib_width"
             android:layout_height="@dimen/child_height" />
         <TextView
@@ -77,7 +77,7 @@
         android:layout_height="@dimen/child_height">
         <ImageButton
             android:src="@mipmap/icon_ctrip_order"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:layout_width="@dimen/ib_width"
             android:layout_height="@dimen/child_height" />
         <TextView
@@ -104,7 +104,7 @@
         android:layout_height="@dimen/child_height">
         <ImageButton
             android:src="@mipmap/icon_my_feedback"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:layout_width="@dimen/ib_width"
             android:layout_height="@dimen/child_height" />
         <TextView
@@ -120,7 +120,7 @@
         android:layout_height="@dimen/child_height">
         <ImageButton
             android:src="@mipmap/icon_setting"
-            android:background="@color/white"
+            android:background="@color/alpha"
             android:layout_width="@dimen/ib_width"
             android:layout_height="@dimen/child_height" />
         <TextView

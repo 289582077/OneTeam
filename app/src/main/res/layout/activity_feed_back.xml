@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.xcc.advancedday13.ui.FeedBackActivity">
+    <RelativeLayout
+        android:background="@color/tool_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_height">
+        <ImageButton
+            android:id="@+id/ib_my_feedback_back"
+            android:background="@color/tool_color"
+            android:src="@mipmap/default_back_icon"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_size"
+            android:text="意见反馈"
+            android:layout_toRightOf="@+id/ib_my_feedback_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:id="@+id/ib_my_send_feedback"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/icon_create_trip"
+            android:background="@color/alpha"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+    <EditText
+        android:hint="给氢气球旅行提意见"
+        android:gravity="top"
+        android:focusable="true"
+        android:layout_margin="@dimen/et_padding"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_view_width" />
+    <EditText
+        android:hint="Email/QQ"
+        android:layout_margin="@dimen/et_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
