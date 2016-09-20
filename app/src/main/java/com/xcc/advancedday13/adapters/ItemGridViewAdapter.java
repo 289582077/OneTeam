@@ -2,6 +2,7 @@ package com.xcc.advancedday13.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import com.squareup.picasso.Picasso;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.model.City;
 
+import org.xutils.x;
+
 import java.util.List;
 
 /**
@@ -19,6 +22,7 @@ import java.util.List;
  */
 public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapter.ViewHolder> {
 
+    private static final String TAG = ItemGridViewAdapter.class.getSimpleName();
     private List<City.DataBean.DestinationsBean> data;
     private LayoutInflater inflater;
     private Context context;
@@ -49,10 +53,16 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(data.get(position).getName());
+        if (data.get(position).getName()!=null) {
 
-        Picasso.with(context).load(data.get(position).getPhoto_url()).into(holder.image);
+            holder.name.setText(data.get(position).getName());
+        }
+        if (data.get(position).getPhoto_url()!=null) {
 
+            Picasso.with(context).load(data.get(position).getPhoto_url()).into(holder.image);
+            //Log.e(TAG, "onBindViewHolder: "+data.get(position).getPhoto_url());
+            //x.image().bind(holder.image,data.get(position).getPhoto_url());
+        }
 
     }
 

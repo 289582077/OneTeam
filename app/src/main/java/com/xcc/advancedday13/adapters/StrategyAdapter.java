@@ -1,18 +1,17 @@
 package com.xcc.advancedday13.adapters;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.model.City;
+import com.xcc.advancedday13.widget.CustomRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +75,12 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHo
         holder.title.setText(data.get(position).getName());
         holder.more.setText(data.get(position).getButton_text());
 
-        GridLayoutManager layoutManager = new GridLayoutManager(context, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(context, 3);
         holder.city.setLayoutManager(layoutManager);
-        holder.city.setAdapter(new ItemGridViewAdapter(context,data.get(position).getDestinations()));
+        if (data.get(position).getDestinations()!=null) {
+
+            holder.city.setAdapter(new ItemGridViewAdapter(context,data.get(position).getDestinations()));
+        }
 
 
 
@@ -89,13 +91,13 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView more;
-        PullToRefreshRecyclerView city;
+        CustomRecyclerView city;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.strategy_item_title);
             more = (TextView) itemView.findViewById(R.id.strategy_item_more);
-            city = (PullToRefreshRecyclerView) itemView.findViewById(R.id.strategy_item_city);
+            city = (CustomRecyclerView) itemView.findViewById(R.id.strategy_item_city);
         }
     }
 }
