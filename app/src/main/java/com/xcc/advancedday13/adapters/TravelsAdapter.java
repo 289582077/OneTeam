@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.model.TravelRoot;
 
@@ -23,9 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by z on 2016/9/20.
- */
+
 public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHolder> {
     private final Context context;
     private List<TravelRoot.DataBean> data;
@@ -42,7 +41,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
         options=new ImageOptions.Builder()
                 .setCircular(true)
                 .setLoadingDrawableId(R.mipmap.travels_image_default)
-                .setRadius(40)
+                .setRadius(30)
                 .build();
         inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -73,6 +72,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         x.image().bind(holder.travelsActivityPhotoUrl,data.get(position).getActivity().getUser().getPhoto_url(),options);
+//        holder.travelsActivityName.
         holder.travelsActivityName.setText(data.get(position).getActivity().getUser().getName());
         holder.travelsName.setText(data.get(position).getUser().getName());
         int gender = data.get(position).getActivity().getUser().getGender();
@@ -81,20 +81,29 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
         }else{
             holder.travelsFollow.setText("关注他");
         }
+//        for (int i = 0; i < ; i++) {
+//
+//        }
         ViewGroup.LayoutParams layoutParams = holder.travelsActivityContentsPhotoUrlOne.getLayoutParams();
         layoutParams.height=data.get(position).getActivity().getContents().get(0).getHeight();
         holder.travelsActivityContentsPhotoUrlOne.setLayoutParams(layoutParams);
-//        Picasso.with(context).load(data.get(position).getActivity().getContents().get(0).getPhoto_url()).into(holder.travelsActivityContentsPhotoUrlOne);
+        Picasso.with(context).load(data.get(position).getActivity().getContents().get(0).getPhoto_url())
+//                .error()
+                .placeholder(R.mipmap.travels_image_default)
+                .into(holder.travelsActivityContentsPhotoUrlOne);
         holder.travelsActivityTopic.setText(data.get(position).getActivity().getTopic());
-        holder.travelsActivityDescription.setText(data.get(position).getActivity().getDescription());
-        int lineCount = holder.travelsActivityDescription.getLineCount();
-        if (lineCount>9) {
+        String description = data.get(position).getActivity().getDescription();
+        holder.travelsActivityDescription.setText(description);
+
+        if (description.length()>240) {
             holder.travelsActivityDistrictsToDetail.setVisibility(View.GONE);
             holder.travelsActivityDescription.setMaxLines(6);
+            holder.travelsReadAll.setVisibility(View.VISIBLE);
         }else{
             holder.travelsReadAll.setVisibility(View.GONE);
             String toDetail = data.get(position).getActivity().getUser().getName() + ":"
-                    + data.get(position).getActivity().getDistricts().get(0).getName();
+                    + data.get(position).getActivity().getDistricts().get(0).getName()+"旅行记("+
+                    data.get(position).getActivity().getParent_district_count()+"篇)";
             holder.travelsActivityDistrictsToDetail.setText(toDetail);
         }
         int likesCount = data.get(position).getActivity().getLikes_count();
