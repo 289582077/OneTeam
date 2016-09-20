@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_height">
         <ImageButton
+            android:id="@+id/ib_setting_back"
             android:background="@color/tool_color"
             android:src="@mipmap/default_back_icon"
             android:layout_width="@dimen/ib_width"
@@ -33,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"/>
     <RelativeLayout
+        android:id="@+id/rl_setting_notification"
         android:layout_width="match_parent"
         android:layout_height="@dimen/child_height">
         <TextView
@@ -46,6 +48,7 @@
         <CheckBox
             android:id="@+id/cb_setting"
             android:focusable="false"
+            android:clickable="false"
             android:layout_alignParentRight="true"
             android:paddingRight="@dimen/et_padding"
             android:layout_width="wrap_content"
@@ -56,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"/>
     <RelativeLayout
+        android:id="@+id/rl_setting_clear_cache"
         android:layout_width="match_parent"
         android:layout_height="@dimen/child_height">
 
@@ -68,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/child_height" />
         <TextView
+            android:id="@+id/tv_setting_cache"
             android:text="约0.0M"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true"
