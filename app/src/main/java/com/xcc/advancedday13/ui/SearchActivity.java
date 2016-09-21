@@ -1,4 +1,4 @@
-package com.xcc.advancedday13;
+package com.xcc.advancedday13.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.constants.HttpConstant;
 import com.xcc.advancedday13.model.Search;
 

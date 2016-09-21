@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.xcc.advancedday13.R;
-import com.xcc.advancedday13.SettingActivity;
+import com.xcc.advancedday13.ui.SettingActivity;
 import com.xcc.advancedday13.base.BaseFragment;
 import com.xcc.advancedday13.ui.FeedBackActivity;
 import com.xcc.advancedday13.ui.LoginActivity;

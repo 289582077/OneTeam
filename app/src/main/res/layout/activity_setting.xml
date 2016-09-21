@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.xcc.advancedday13.SettingActivity">
+    tools:context=".ui.SettingActivity">
     <LinearLayout
         android:background="@color/tool_color"
         android:layout_width="match_parent"

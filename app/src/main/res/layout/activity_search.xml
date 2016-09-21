@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xcc.advancedday13.SearchActivity">
+    tools:context=".ui.SearchActivity">
     <FrameLayout
         android:background="@color/tool_color"
         android:layout_width="match_parent"

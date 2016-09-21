@@ -1,4 +1,4 @@
-package com.xcc.advancedday13;
+package com.xcc.advancedday13.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
+import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.ui.MainActivity;
 import com.xcc.advancedday13.utils.JudgeSharePreference;
 

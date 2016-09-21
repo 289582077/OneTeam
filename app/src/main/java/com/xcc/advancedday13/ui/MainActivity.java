@@ -1,24 +1,26 @@
 package com.xcc.advancedday13.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.xcc.advancedday13.R;
-import com.xcc.advancedday13.SearchActivity;
 import com.xcc.advancedday13.adapters.MainViewPagerAdapter;
 import com.xcc.advancedday13.base.BaseActivity;
 import com.xcc.advancedday13.ui.fragments.MyFragment;
 import com.xcc.advancedday13.ui.fragments.StrategyFragment;
 import com.xcc.advancedday13.ui.fragments.TravelsFragment;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private TabLayout mTablayout;
     private ViewPager mViewPager;
@@ -46,9 +48,6 @@ public class MainActivity extends BaseActivity {
             title.setText(text[i]);
             image.setImageResource(imageArray[i]);
             TabLayout.Tab tab = mTablayout.newTab();
-            if (i==0) {
-                tab.select();
-            }
             tab.setCustomView(tabItem);
             mTablayout.addTab(tab);
         }
@@ -61,9 +60,10 @@ public class MainActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
 
         //mTablayout.setupWithViewPager(mViewPager);
-        mTablayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+       mTablayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablayout));
         mTablayout.setOnTabSelectedListener(this);
+
 
         mViewPager.addOnPageChangeListener(this);
     }
@@ -101,15 +101,7 @@ public class MainActivity extends BaseActivity {
             image.setVisibility(View.VISIBLE);
             title.setVisibility(View.GONE);
         }
-//        ImageView image = (ImageView) mTablayout.getTabAt(position).getCustomView().findViewById(R.id.tab_item_image);
-//        TextView title = (TextView) mTablayout.getTabAt(position).getCustomView().findViewById(R.id.tab_item_title);
-//        if (image.getVisibility()== View.GONE) {
-//            image.setVisibility(View.VISIBLE);
-//            title.setVisibility(View.GONE);
-//        }else{
-//            image.setVisibility(View.GONE);
-//            title.setVisibility(View.VISIBLE);
-//        }
+//
 
 
     }
@@ -123,13 +115,6 @@ public class MainActivity extends BaseActivity {
     public void onTabSelected(TabLayout.Tab tab) {
         TextView title = (TextView) tab.getCustomView().findViewById(R.id.tab_item_title);
         ImageView image = (ImageView) tab.getCustomView().findViewById(R.id.tab_item_image);
-//        if (image.getVisibility()== View.GONE) {
-//            image.setVisibility(View.VISIBLE);
-//            title.setVisibility(View.GONE);
-//        }else{
-//            image.setVisibility(View.GONE);
-//            title.setVisibility(View.VISIBLE);
-//        }
 
         image.setVisibility(View.VISIBLE);
             title.setVisibility(View.GONE);

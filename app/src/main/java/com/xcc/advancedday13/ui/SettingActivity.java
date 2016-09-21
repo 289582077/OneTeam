@@ -1,4 +1,4 @@
-package com.xcc.advancedday13;
+package com.xcc.advancedday13.ui;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Cache;
+import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.base.BaseActivity;
 import com.xcc.advancedday13.utils.CacheUtil;
 
