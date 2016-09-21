@@ -76,15 +76,11 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHo
         holder.more.setText(data.get(position).getButton_text());
 
         GridLayoutManager layoutManager = new GridLayoutManager(context, 3);
+        //layoutManager.set
         holder.city.setLayoutManager(layoutManager);
         if (data.get(position).getDestinations()!=null) {
-
             holder.city.setAdapter(new ItemGridViewAdapter(context,data.get(position).getDestinations()));
         }
-
-
-
-
 
     }
 
