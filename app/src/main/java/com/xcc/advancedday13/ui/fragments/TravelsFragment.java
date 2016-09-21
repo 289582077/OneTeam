@@ -24,7 +24,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,Handler.Callback {
+public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,Handler.Callback, TravelsAdapter.OnReadAllClicked, TravelsAdapter.OnUserIconClicked {
 
     private static final int UP_DATE = 100;
     private static final int DOWN = 200;
@@ -49,13 +49,22 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
         mPtrrv.setRefreshing(true);
         mPtrrv.setOnRefreshListener(this);
         adapter = new TravelsAdapter(getActivity(), null);
+        adapter.setReadAllClicked(this);
+        adapter.setUserIconClicked(this);
         mPtrrv.setAdapter(adapter);
-        setupView(Selecte.DOWN);
+        setupView(Selected.DOWN);
     }
-    enum Selecte{
-        UP,DOWN
+
+    @Override
+    public void onUserIconClicked(TravelRoot.DataBean item) {
+//        item.getActivity()
     }
-    private void setupView(final Selecte state) {
+
+
+    enum Selected{
+        UP,DOWN;
+    }
+    private void setupView(final Selected state) {
         RequestParams params = new RequestParams(HttpConstant.TRAVELS_URL+pageIndex);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
@@ -69,9 +78,9 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
                         Message msg = Message.obtain();
                         msg.obj=travelRoot;
                         msg.what=UP_DATE;
-                        if (state.equals(Selecte.DOWN)) {
+                        if (state.equals(Selected.DOWN)) {
                             msg.arg1=DOWN;
-                        }else if (state.equals(Selecte.UP)) {
+                        }else if (state.equals(Selected.UP)) {
                             msg.arg1=UP;
                         }
                         mHandler.sendMessage(msg);
@@ -96,11 +105,10 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
             }
         });
     }
-
     @Override
     public void onRefresh() {
         pageIndex=1;
-        setupView(Selecte.DOWN);
+        setupView(Selected.DOWN);
     }
 
     @Override
@@ -116,5 +124,16 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onReadAllClicked(TravelRoot.DataBean item) {
+        item.getActivity().setReadAllClicked(true);
+        if (item.getActivity().getParent_district_count()<=1) {
+            item.getActivity().setShowDetail(false);
+        }else {
+            item.getActivity().setShowDetail(true);
+        }
+        adapter.notifyDataSetChanged();
     }
 }

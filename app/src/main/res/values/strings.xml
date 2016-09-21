@@ -4,4 +4,6 @@
     <string name="travels_from_1">来自</string>
     <string name="travels_from_2">推荐</string>
     <string name="text_read_all">查看全文</string>
+    <string name="user_center">个人中心</string>
+    <string name="user_follow">关注他</string>
 </resources>
