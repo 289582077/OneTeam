@@ -19,10 +19,17 @@ import java.util.List;
 /**
  * Created by bukeyishidecheng on 16/9/20.
  */
-public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHolder> {
+public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHolder> implements ItemGridViewAdapter.OnItemClickListener {
     private List<City.DataBean> data;
     private LayoutInflater inflater;
     private Context context;
+    private OnItemClickListener listener;
+    private ItemGridViewAdapter adapter;
+
+    public void setOnItemClick(OnItemClickListener listener){
+        this.listener=listener;
+
+    }
 
 
     public StrategyAdapter(Context context, List<City.DataBean> data) {
@@ -79,7 +86,18 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHo
         //layoutManager.set
         holder.city.setLayoutManager(layoutManager);
         if (data.get(position).getDestinations()!=null) {
-            holder.city.setAdapter(new ItemGridViewAdapter(context,data.get(position).getDestinations()));
+            adapter = new ItemGridViewAdapter(context,data.get(position).getDestinations());
+            adapter.setOnItemClick(this);
+            holder.city.setAdapter(adapter);
+        }
+
+    }
+
+    @Override
+    public void onItemClick(City.DataBean.DestinationsBean data) {
+
+        if (listener!=null) {
+            listener.onItemClick(data);
         }
 
     }
@@ -95,5 +113,10 @@ public class StrategyAdapter extends RecyclerView.Adapter<StrategyAdapter.ViewHo
             more = (TextView) itemView.findViewById(R.id.strategy_item_more);
             city = (CustomRecyclerView) itemView.findViewById(R.id.strategy_item_city);
         }
+    }
+
+    public  interface OnItemClickListener{
+        void onItemClick(City.DataBean.DestinationsBean data);
+
     }
 }

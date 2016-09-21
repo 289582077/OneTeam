@@ -1,5 +1,7 @@
 package com.xcc.advancedday13.ui.fragments;
 
+import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -20,6 +22,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
+import com.squareup.picasso.Picasso;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.adapters.NearByGridViewAdapter;
 import com.xcc.advancedday13.adapters.StrategyAdapter;
@@ -27,7 +30,9 @@ import com.xcc.advancedday13.adapters.StrategyHeaderAdapter;
 import com.xcc.advancedday13.base.BaseFragment;
 import com.xcc.advancedday13.constants.HttpConstant;
 import com.xcc.advancedday13.model.City;
+import com.xcc.advancedday13.model.HeaderMsg;
 import com.xcc.advancedday13.model.NearByCity;
+import com.xcc.advancedday13.ui.CityDetailActivity;
 import com.xcc.advancedday13.widget.CustomRecyclerView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -45,7 +50,7 @@ import okhttp3.Call;
 /**
  * Created by bukeyishidecheng on 16/9/20.
  */
-public class StrategyFragment extends BaseFragment implements View.OnClickListener, AMapLocationListener {
+public class StrategyFragment extends BaseFragment implements View.OnClickListener, AMapLocationListener ,StrategyAdapter.OnItemClickListener{
     private static final String TAG = StrategyFragment.class.getSimpleName();
     private PullToRefreshRecyclerView mPtrrv;
     private StrategyAdapter adapter;
@@ -57,6 +62,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     public AMapLocationClient mLocationClient=null;
     private AMapLocationClientOption mLocationClientOption;
     private NearByGridViewAdapter nearByAdapter;
+    private StrategyHeaderAdapter mHeaderAdapter;
 
     @Nullable
     @Override
@@ -69,8 +75,69 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
+        setupHeaderView();
         initLocation();
         setupView();
+    }
+
+    private void initView() {
+        mPtrrv = (PullToRefreshRecyclerView) layout.findViewById(R.id.fragment_strategy_ptrrv);
+        //给RecyclerView设置布局管理器
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mPtrrv.setLayoutManager(layoutManager);
+        //给RecyclerView添加头布局
+        View mHeaderView = LayoutInflater.from(getActivity()).inflate(R.layout.strategy_header, null);
+        //实例化头布局的轮播页
+        mHeaderVp = (ViewPager) mHeaderView.findViewById(R.id.strategy_header_vp);
+//        mHeaderAdapter = new StrategyHeaderAdapter(null);
+//        mHeaderVp.setAdapter(mHeaderAdapter);
+
+        //
+        //实例化头布局附近的地方布局
+        mNearBy = ((TextView) mHeaderView.findViewById(R.id.strategy_item_title));
+        mNearBy.setText("附近的目的地");
+        mNearByCity = (GridView) mHeaderView.findViewById(R.id.strategy_item_nearby_city);
+
+        nearByAdapter = new NearByGridViewAdapter(getActivity(),null);
+        mNearByCity.setAdapter(nearByAdapter);
+
+
+        mTextMore = ((TextView) mHeaderView.findViewById(R.id.strategy_item_more));
+        mTextMore.setOnClickListener(this);
+
+
+        mPtrrv.addHeaderView(mHeaderView);
+        adapter = new StrategyAdapter(getActivity(),null);
+       adapter.setOnItemClick(this);
+        mPtrrv.setAdapter(adapter);
+
+    }
+
+    private void setupHeaderView() {
+        OkHttpUtils.get().url(HttpConstant.STRATEGY_HEAD_URL).build().execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+            }
+            @Override
+            public void onResponse(String response, int id) {
+                Log.e(TAG, "onResponse: "+response);
+                Gson gson = new Gson();
+                HeaderMsg headerMsg = gson.fromJson(response, HeaderMsg.class);
+                int size = headerMsg.getData().size();
+                Log.e(TAG, "onResponse: "+size);
+                List<View> data=new ArrayList<>();
+                for (int i = 0; i < size; i++) {
+                    ImageView imageView = new ImageView(getActivity());
+                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    Picasso.with(getActivity()).load(headerMsg.getData().get(i).getPhoto().getPhoto_url()).into(imageView);
+                    data.add(imageView);
+                }
+                mHeaderAdapter = new StrategyHeaderAdapter(data);
+                mHeaderVp.setAdapter(mHeaderAdapter);
+                //mHeaderAdapter.updateRes(data);
+
+            }
+        });
     }
 
     private void initLocation() {
@@ -90,37 +157,6 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
         //启动定位
         mLocationClient.startLocation();
 
-
-    }
-
-    private void initView() {
-        mPtrrv = (PullToRefreshRecyclerView) layout.findViewById(R.id.fragment_strategy_ptrrv);
-        //给RecyclerView设置布局管理器
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mPtrrv.setLayoutManager(layoutManager);
-        //给RecyclerView添加头布局
-        View mHeaderView = LayoutInflater.from(getActivity()).inflate(R.layout.strategy_header, null);
-        //实例化头布局的轮播页
-        mHeaderVp = (ViewPager) mHeaderView.findViewById(R.id.strategy_header_vp);
-        mHeaderVp.setAdapter(new StrategyHeaderAdapter(getData()));
-
-        //
-        //实例化头布局附近的地方布局
-        mNearBy = ((TextView) mHeaderView.findViewById(R.id.strategy_item_title));
-        mNearBy.setText("附近的目的地");
-        mNearByCity = (GridView) mHeaderView.findViewById(R.id.strategy_item_nearby_city);
-
-        nearByAdapter = new NearByGridViewAdapter(getActivity(),null);
-        mNearByCity.setAdapter(nearByAdapter);
-
-
-        mTextMore = ((TextView) mHeaderView.findViewById(R.id.strategy_item_more));
-        mTextMore.setOnClickListener(this);
-
-
-        mPtrrv.addHeaderView(mHeaderView);
-        adapter = new StrategyAdapter(getActivity(),null);
-        mPtrrv.setAdapter(adapter);
 
     }
 
@@ -185,7 +221,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
 
                 double longitude = aMapLocation.getLongitude();
                 double latitude = aMapLocation.getLatitude();
-                Log.e(TAG, "onLocationChanged: 纬度:"+ latitude +"经度:"+ longitude);
+                //Log.e(TAG, "onLocationChanged: 纬度:"+ latitude +"经度:"+ longitude);
                 OkHttpUtils.get()
                         .url(HttpConstant.STRATEGY_NEARBY_URL)
                         .addParams("lat", String.valueOf(latitude))
@@ -203,7 +239,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
                                 Log.e(TAG, "onResponse: "+response);
                                 Gson gson = new Gson();
                                 NearByCity nearByCity = gson.fromJson(response, NearByCity.class);
-                                Log.e(TAG, "onResponse: "+nearByCity.getData().size());
+                                //Log.e(TAG, "onResponse: "+nearByCity.getData().size());
                                 nearByAdapter.updateRes(nearByCity.getData());
 
                             }
@@ -215,6 +251,15 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
                 Log.e(TAG, "onLocationChanged: "+aMapLocation.getErrorCode()+"<--->"+aMapLocation.getErrorInfo());
             }
         }
+
+    }
+
+
+    @Override
+    public void onItemClick(City.DataBean.DestinationsBean data) {
+
+        Intent intent = new Intent(getActivity(), CityDetailActivity.class);
+        startActivity(intent);
 
     }
 }

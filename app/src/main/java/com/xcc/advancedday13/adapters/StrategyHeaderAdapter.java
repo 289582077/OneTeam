@@ -1,6 +1,7 @@
 package com.xcc.advancedday13.adapters;
 
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Created by bukeyishidecheng on 16/9/21.
  */
 public class StrategyHeaderAdapter extends PagerAdapter {
+    private static final String TAG = StrategyHeaderAdapter.class.getSimpleName();
     private List<View> data;
 
     public StrategyHeaderAdapter(List<View> data) {
@@ -38,18 +40,27 @@ public class StrategyHeaderAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        Log.e(TAG, "instantiateItem: "+data.size());
+        if (data.size()!=0) {
+            int currentPosition = position % data.size();
+            int i = container.indexOfChild(data.get(currentPosition));
+            if (i==-1) {
+                container.addView(data.get(currentPosition));
+            }
+            return data.get(currentPosition);
+        }
+          return  null;
 
-        int currentPosition = position % data.size();
-        container.addView(data.get(currentPosition));
-
-
-        return data.get(currentPosition);
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         int currentPosition = position % data.size();
-        container.removeView(data.get(currentPosition));
+        int i = container.indexOfChild(data.get(currentPosition));
+        if (i>0) {
+            container.removeView(data.get(currentPosition));
+
+        }
     }
 
     @Override

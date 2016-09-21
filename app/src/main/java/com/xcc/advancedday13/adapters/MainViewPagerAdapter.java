@@ -27,8 +27,4 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         return data!=null?data.size():0;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return super.getPageTitle(position);
-    }
 }

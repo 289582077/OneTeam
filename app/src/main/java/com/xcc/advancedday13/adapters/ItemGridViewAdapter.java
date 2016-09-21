@@ -20,12 +20,19 @@ import java.util.List;
 /**
  * Created by bukeyishidecheng on 16/9/20.
  */
-public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapter.ViewHolder> {
+public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapter.ViewHolder> implements View.OnClickListener {
 
     private static final String TAG = ItemGridViewAdapter.class.getSimpleName();
     private List<City.DataBean.DestinationsBean> data;
     private LayoutInflater inflater;
     private Context context;
+    private RecyclerView recyclerView;
+    private  OnItemClickListener listener;
+
+    public void setOnItemClick(OnItemClickListener listener){
+        this.listener=listener;
+
+    }
 
     public ItemGridViewAdapter(Context context,List<City.DataBean.DestinationsBean> data) {
         this.data = data;
@@ -38,6 +45,7 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
         return data!=null?data.size():0;
     }
 
+
     public City.DataBean.DestinationsBean getItem(int position){
         return data.get(position);
 
@@ -47,6 +55,8 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView=inflater.inflate(R.layout.strategy_item_gv_item,parent,false);
+
+        itemView.setOnClickListener(this);
 
         return new ViewHolder(itemView);
     }
@@ -69,6 +79,21 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
 
     }
 
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = new RecyclerView(context);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int position = recyclerView.getChildAdapterPosition(v);
+
+        if (listener!=null) {
+            listener.onItemClick(this.getItem(position));
+        }
+    }
+
     public  static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         TextView name;
@@ -80,5 +105,10 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
             name= (TextView) itemView.findViewById(R.id.strategy_item_gv_item_name);
             name_en= (TextView) itemView.findViewById(R.id.strategy_item_gv_item_name_en);
         }
+    }
+
+    public  interface OnItemClickListener{
+        void onItemClick(City.DataBean.DestinationsBean data);
+
     }
 }
