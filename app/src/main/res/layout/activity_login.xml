@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_height">
         <ImageButton
+            android:id="@+id/ib_my_login_back"
             android:background="@color/tool_color"
             android:src="@mipmap/default_back_icon"
             android:layout_width="@dimen/ib_width"

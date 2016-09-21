@@ -3,6 +3,7 @@ package com.xcc.advancedday13;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -23,6 +24,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private ImageButton mBack;
     private RelativeLayout mNotifi;
     private CheckBox mCb;
+    private TextView mMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         mBack = (ImageButton) findViewById(R.id.ib_setting_back);
         mNotifi = (RelativeLayout) findViewById(R.id.rl_setting_notification);
         mCb = (CheckBox) findViewById(R.id.cb_setting);
+        mMedia = (TextView) findViewById(R.id.tv_setting_media);
 
+
+        mMedia.setOnClickListener(this);
         mNotifi.setOnClickListener(this);
         mBack.setOnClickListener(this);
         mClearCache.setOnClickListener(this);
@@ -97,6 +102,10 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     mCb.setChecked(true);
                 }
 
+                break;
+            case R.id.tv_setting_media:
+                Intent intent = new Intent(this, SplashActivity.class);
+                startActivity(intent);
                 break;
         }
     }

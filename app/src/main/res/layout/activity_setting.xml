@@ -85,6 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height"/>
     <TextView
+        android:id="@+id/tv_setting_media"
         android:text="黑科技小视频"
         android:textColor="@color/tv_color_black"
         android:textSize="@dimen/tv_size"
