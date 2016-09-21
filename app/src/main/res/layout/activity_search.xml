@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xcc.advancedday13.SearchActivity">
@@ -16,6 +17,8 @@
             android:layout_height="match_parent" />
         <EditText
             android:id="@+id/et_search_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:layout_marginLeft="@dimen/search_marginLeft"
             android:layout_marginRight="@dimen/search_marginLeft"
             android:layout_width="match_parent"
@@ -28,4 +31,9 @@
             android:layout_width="@dimen/ib_width"
             android:layout_height="match_parent" />
     </FrameLayout>
+    <ImageView
+        android:id="@+id/iv_result"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
