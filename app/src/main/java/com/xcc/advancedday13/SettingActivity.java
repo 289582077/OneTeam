@@ -105,6 +105,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.tv_setting_media:
                 Intent intent = new Intent(this, SplashActivity.class);
+                intent.putExtra("isSetting",true);
                 startActivity(intent);
                 break;
         }

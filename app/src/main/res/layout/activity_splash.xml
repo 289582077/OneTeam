@@ -16,7 +16,7 @@
         android:background="@drawable/splash_jpbg"
         android:layout_margin="@dimen/et_padding"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/jump_height" />
     <RelativeLayout
         android:id="@+id/rl_splash_media_bg"
         android:background="@drawable/launcg_bg"
@@ -46,4 +46,22 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <FrameLayout
+        android:id="@+id/fl_launch"
+        android:background="@drawable/launcg_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@mipmap/launch_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/ib_enter_app"
+            android:background="@color/alpha"
+            android:src="@mipmap/img_enter_app"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </RelativeLayout>
