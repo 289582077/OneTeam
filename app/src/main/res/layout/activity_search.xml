@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xcc.advancedday13.SearchActivity">
+    <FrameLayout
+        android:background="@color/tool_color"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_height">
+        <ImageButton
+            android:id="@+id/ib_search_back"
+            android:background="@color/alpha"
+            android:src="@mipmap/default_back_icon"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+        <EditText
+            android:id="@+id/et_search_content"
+            android:layout_marginLeft="@dimen/search_marginLeft"
+            android:layout_marginRight="@dimen/search_marginLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_cancel_search"
+            android:text="取消"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+</LinearLayout>

@@ -17,4 +17,5 @@
     <dimen name="btn_height">50dp</dimen>
     <dimen name="btn_corner">10dp</dimen>
     <dimen name="jump_height">35dp</dimen>
+    <dimen name="search_marginLeft">50dp</dimen>
 </resources>
