@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
 public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,6 +16,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     private VideoView mVideo;
     private Button mBtn;
     private ImageButton mPlay;
+    private RelativeLayout mBg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         mVideo = (VideoView) findViewById(R.id.vv_splash);
         mBtn = (Button) findViewById(R.id.btn_splash);
         mPlay = (ImageButton) findViewById(R.id.ib_splash_play);
+        mBg = (RelativeLayout) findViewById(R.id.rl_splash_media_bg);
+
         mPlay.setOnClickListener(this);
         mBtn.setOnClickListener(this);
     }
@@ -35,13 +39,14 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.ib_splash_play:
-                mPlay.setVisibility(View.GONE);
                 playMedia();
                 break;
         }
     }
 
     private void playMedia() {
+        mPlay.setVisibility(View.GONE);
+        mBg.setVisibility(View.GONE);
         mVideo.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" +R.raw.media));
         mVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
