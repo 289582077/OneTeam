@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.xcc.advancedday13.R;
+import com.xcc.advancedday13.SearchActivity;
 import com.xcc.advancedday13.adapters.MainViewPagerAdapter;
 import com.xcc.advancedday13.base.BaseActivity;
 import com.xcc.advancedday13.ui.fragments.MyFragment;
@@ -21,15 +18,16 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener,TabLayout.OnTabSelectedListener {
+public class MainActivity extends BaseActivity {
 
     private TabLayout mTablayout;
     private ViewPager mViewPager;
     private MainViewPagerAdapter adapter;
     private String[] text={"攻略","游记","行程单","我的"};
     private int[] imageArray={R.mipmap.icon_tab_home,R.mipmap.icon_tab_trip,R.mipmap.icon_tab_plan,R.mipmap.icon_tab_my};
+    private TextView mTvSearch;
 
-    private int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +37,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     private void initView() {
         mTablayout = (TabLayout) findViewById(R.id.main_tab);
+        mTvSearch = (TextView) findViewById(R.id.tv_main_search);
 
         for (int i = 0; i < 4; i++) {
             View tabItem= LayoutInflater.from(this).inflate(R.layout.tab_item, null);
@@ -56,6 +55,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
 
 
+        mTvSearch.setOnClickListener(this);
         mViewPager = (ViewPager) findViewById(R.id.main_vp);
         adapter = new MainViewPagerAdapter(getSupportFragmentManager(),getData());
         mViewPager.setAdapter(adapter);
@@ -147,5 +147,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_main_search:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

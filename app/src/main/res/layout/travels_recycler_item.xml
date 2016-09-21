@@ -7,13 +7,25 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:padding="5dp">
-        <ImageView
-            android:id="@+id/travels_recycler_item_activity_photo_url"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:padding="10dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="fitXY" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/travels_recycler_item_activity_photo_url"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitXY" />
+            <ImageView
+                android:id="@+id/travels_recycler_item_user_v"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_user_v"
+                android:layout_marginLeft="50dp"
+                android:visibility="gone"
+                android:layout_marginTop="50dp"/>
+        </FrameLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -40,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="@string/text_default"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/travels_recycler_item_name_color"
                     android:gravity="center_vertical"/>
@@ -70,14 +82,17 @@
         android:id="@+id/travels_recycler_item_activity_contents_photo_url_one"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/travels_image_default"
         android:scaleType="fitXY"/>
     <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="80dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="90dp"
+        android:scrollbars="none">
         <LinearLayout
             android:id="@+id/travels_recycler_item_activity_contents_photo_url_others"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
         </LinearLayout>
@@ -96,10 +111,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:textSize="15sp"
+        android:textColor="@color/black"
         android:text="@string/text_default"/>
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
             android:id="@+id/travels_recycler_item_read_all"
             android:layout_width="match_parent"
@@ -118,49 +135,64 @@
             android:gravity="center_vertical"
             android:textColor="@color/travels_recycler_item_name_color"
             android:text="@string/text_default"/>
-    </FrameLayout>
-    <ScrollView
+    </LinearLayout>
+    <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="40dp">
+        android:layout_margin="10dp"
+        android:layout_height="40dp"
+        android:scrollbars="none">
         <LinearLayout
-            android:id="@+id/travels_recycler_item_activity_poi"
+            android:id="@+id/travels_recycler_item_activity_districts"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
-
         </LinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d7c9c9"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:paddingLeft="10dp"
         android:orientation="horizontal">
-        <CheckBox
-            android:id="@+id/travels_recycler_item_activity_likes_count"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:button="@drawable/travels_like_selector"
-            android:gravity="center"
-
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:id="@+id/travels_recycler_item_activity_comments_count"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:button="@drawable/travels_like_selector"
-            android:gravity="center"
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:id="@+id/travels_recycler_item_activity_favorites_count"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:button="@drawable/travels_like_selector"
-            android:gravity="center"
-            android:layout_height="match_parent" />
-
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+            <CheckBox
+                android:id="@+id/travels_recycler_item_activity_likes_count"
+                android:layout_width="wrap_content"
+                android:button="@drawable/travels_like_selector"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+            <CheckBox
+                android:id="@+id/travels_recycler_item_activity_comments_count"
+                android:layout_width="wrap_content"
+                android:button="@drawable/travels_comment_selector"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+            <CheckBox
+                android:id="@+id/travels_recycler_item_activity_favorites_count"
+                android:layout_width="wrap_content"
+                android:button="@drawable/travels_fav_selector"
+                android:gravity="center"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="match_parent"
             android:gravity="center">
             <TextView
@@ -168,9 +200,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingLeft="40dp"
                 android:drawableRight="@drawable/travels_more_selector"/>
         </LinearLayout>
-
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#d7c9c9"/>
 </LinearLayout>

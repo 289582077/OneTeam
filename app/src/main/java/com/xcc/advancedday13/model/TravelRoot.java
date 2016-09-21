@@ -2,9 +2,7 @@ package com.xcc.advancedday13.model;
 
 import java.util.List;
 
-/**
- * Created by z on 2016/9/20.
- */
+
 public class TravelRoot {
 
 
@@ -140,7 +138,25 @@ public class TravelRoot {
             private List<ContentsBean> contents;
 
             private List<DistrictsBean> districts;
-            private List<?> categories;
+            private List<Categorie> categories;
+            private boolean isReadAllClicked;
+            private boolean isShowDetail;
+
+            public boolean isReadAllClicked() {
+                return isReadAllClicked;
+            }
+
+            public void setReadAllClicked(boolean readAllClicked) {
+                isReadAllClicked = readAllClicked;
+            }
+
+            public boolean isShowDetail() {
+                return isShowDetail;
+            }
+
+            public void setShowDetail(boolean showDetail) {
+                isShowDetail = showDetail;
+            }
 
             public int getId() {
                 return id;
@@ -294,14 +310,41 @@ public class TravelRoot {
                 this.districts = districts;
             }
 
-            public List<?> getCategories() {
+            public List<Categorie> getCategories() {
                 return categories;
             }
 
-            public void setCategories(List<?> categories) {
+            public void setCategories(List<Categorie> categories) {
                 this.categories = categories;
             }
+            public static class Categorie{
+                private int id;
+                private String name;
+                private String category_type;
+                public int getId() {
+                    return id;
+                }
 
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getName() {
+                    return name;
+                }
+
+                public void setName(String name) {
+                    this.name = name;
+                }
+
+                public String getCategory_type() {
+                    return category_type;
+                }
+
+                public void setCategory_type(String category_type) {
+                    this.category_type = category_type;
+                }
+            }
             public static class UserBean {
                 private int id;
                 private String name;

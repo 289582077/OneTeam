@@ -3,6 +3,8 @@ package com.xcc.advancedday13;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -23,6 +25,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private ImageButton mBack;
     private RelativeLayout mNotifi;
     private CheckBox mCb;
+    private TextView mMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +56,17 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         mBack = (ImageButton) findViewById(R.id.ib_setting_back);
         mNotifi = (RelativeLayout) findViewById(R.id.rl_setting_notification);
         mCb = (CheckBox) findViewById(R.id.cb_setting);
+        mMedia = (TextView) findViewById(R.id.tv_setting_media);
 
+
+        mMedia.setOnClickListener(this);
         mNotifi.setOnClickListener(this);
         mBack.setOnClickListener(this);
         mClearCache.setOnClickListener(this);
         mCache.setText(getAppCache());
+        SharedPreferences sp = getSharedPreferences("cbState", MODE_PRIVATE);
+        boolean cbState = sp.getBoolean("cbState", false);
+        mCb.setChecked(cbState);
     }
 
     private String getAppCache() {
@@ -84,6 +93,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mCb.setChecked(false);
+                            saveCbState(false);
                             sendNotifi();
                         }
                     });
@@ -95,11 +105,25 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                     builder.show();
                 }else {
                     mCb.setChecked(true);
+                    saveCbState(true);
                 }
 
                 break;
+            case R.id.tv_setting_media:
+                Intent intent = new Intent(this, SplashActivity.class);
+                intent.putExtra("isSetting",true);
+                startActivity(intent);
+                break;
         }
     }
+
+    private void saveCbState(boolean b) {
+        SharedPreferences sp = getSharedPreferences("cbState", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean("cbState",b);
+        edit.commit();
+    }
+
 
     private void sendNotifi() {
         NotificationManager systemService = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -115,4 +139,5 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         systemService.notify(1, notification);
     }
+
 }
