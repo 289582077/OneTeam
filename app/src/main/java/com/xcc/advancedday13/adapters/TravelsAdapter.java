@@ -267,7 +267,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.travels_recycler_item_activity_photo_url:
-                userIconClicked.onUserIconClicked(data.get(recyclerView.getChildAdapterPosition((LinearLayout) v.getParent().getParent())));
+                userIconClicked.onUserIconClicked(data.get(recyclerView.getChildAdapterPosition((LinearLayout) v.getParent().getParent().getParent())));
                 break;
             case R.id.travels_recycler_item_name:
                 break;

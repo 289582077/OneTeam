@@ -10,4 +10,5 @@ public class HttpConstant {
     public static final String TRAVELS_URL="http://q.chanyouji.com/api/v1/timelines.json?page=";
     public static final String SEARCHURL="http://q.chanyouji.com/api/v2/search.json?q=";
     public static final String DESTINATION_URL="http://q.chanyouji.com/api/v3/destinations/665.json";
+    public static final String TRAVEL_USER_FIRST_URL="http://q.chanyouji.com/api/v1/users/";
 }

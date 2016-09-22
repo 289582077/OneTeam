@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -122,8 +123,10 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         TextView title = (TextView) tab.getCustomView().findViewById(R.id.tab_item_title);
         ImageView image = (ImageView) tab.getCustomView().findViewById(R.id.tab_item_image);
 
+        image.startAnimation(AnimationUtils.loadAnimation(this,R.anim.image_enter));
+        title.startAnimation(AnimationUtils.loadAnimation(this,R.anim.title_exit));
         image.setVisibility(View.VISIBLE);
-            title.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);
     }
 
     @Override

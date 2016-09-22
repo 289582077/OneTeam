@@ -33,6 +33,7 @@ import com.xcc.advancedday13.model.City;
 import com.xcc.advancedday13.model.HeaderMsg;
 import com.xcc.advancedday13.model.NearByCity;
 import com.xcc.advancedday13.ui.CityDetailActivity;
+import com.xcc.advancedday13.widget.CustomGridView;
 import com.xcc.advancedday13.widget.CustomRecyclerView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -57,7 +58,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     private ViewPager mHeaderVp;
     private TextView mNearBy;
     private TextView mTextMore;
-    private GridView mNearByCity;
+    private CustomGridView mNearByCity;
 
     public AMapLocationClient mLocationClient=null;
     private AMapLocationClientOption mLocationClientOption;
@@ -96,7 +97,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
         //实例化头布局附近的地方布局
         mNearBy = ((TextView) mHeaderView.findViewById(R.id.strategy_item_title));
         mNearBy.setText("附近的目的地");
-        mNearByCity = (GridView) mHeaderView.findViewById(R.id.strategy_item_nearby_city);
+        mNearByCity = (CustomGridView) mHeaderView.findViewById(R.id.strategy_item_nearby_city);
 
         nearByAdapter = new NearByGridViewAdapter(getActivity(),null);
         mNearByCity.setAdapter(nearByAdapter);
@@ -259,6 +260,9 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     public void onItemClick(City.DataBean.DestinationsBean data) {
 
         Intent intent = new Intent(getActivity(), CityDetailActivity.class);
+
+        int id = data.getId();
+        intent.putExtra("id",id);
         startActivity(intent);
 
     }

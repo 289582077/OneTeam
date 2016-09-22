@@ -51,7 +51,7 @@
             android:paddingLeft="10dp"
             android:background="@color/View_bg"
             />
-        <GridView
+        <com.xcc.advancedday13.widget.CustomGridView
             android:id="@+id/strategy_item_nearby_city"
             android:layout_width="match_parent"
             android:numColumns="3"
