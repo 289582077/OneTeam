@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.SearchActivity">
     <FrameLayout
+        android:focusable="false"
         android:background="@color/tool_color"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_height">
@@ -19,6 +20,8 @@
             android:id="@+id/et_search_content"
             android:imeOptions="actionSearch"
             android:inputType="text"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_marginLeft="@dimen/search_marginLeft"
             android:layout_marginRight="@dimen/search_marginLeft"
             android:layout_width="match_parent"

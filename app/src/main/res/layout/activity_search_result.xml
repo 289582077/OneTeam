@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/tool_height">
             <TextView
-                android:text="北京"
+                android:id="@+id/tv_title_city_name"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:textColor="@color/white"
                 android:paddingLeft="@dimen/search_marginLeft"
@@ -38,19 +38,42 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/iv_result_cover"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/iv_height" />
+                android:layout_height="@dimen/iv_height">
+                <ImageView
+                    android:id="@+id/iv_result_cover"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/iv_height" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_city_name"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/big_tv_size"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_city_en_name"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_margin="@dimen/et_padding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="北京目的地"
+                    android:id="@+id/tv_result_destination_name"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/tool_height" />
@@ -71,11 +94,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/divider_height"/>
                 <TextView
-                    android:text="旅行榜单"
+                    android:id="@+id/tv_result_over_view"
+                    android:gravity="center"
+                    android:text="概览与地图"
+                    android:textColor="@color/tool_color"
+                    android:textSize="@dimen/tv_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tool_height" />
+                <View
+                    android:background="@color/my_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height"/>
+
+                <TextView
+                    android:id="@+id/tv_result_topList_title"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/tool_height" />
+                <TextView
+                    android:background="@color/my_divider_color"
+                    android:textSize="@dimen/tv_size_small"
+                    android:text="'自定义行程：收藏榜单后自动生成行程'"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="@dimen/tv_height_small" />
+                <View
+                    android:background="@color/alpha"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"/>
                 <LinearLayout
+                    android:id="@+id/ll_result_topList"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -91,18 +139,60 @@
                 <ImageView
                     android:id="@+id/iv_result_set"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="9"
                     android:layout_margin="@dimen/et_padding"
-                    android:background="@color/half_alpha"
+                    android:background="@drawable/tv_bg"
+                    android:padding="@dimen/tv_padding"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
-
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="@dimen/et_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_result_author"
+                    android:text="作者"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tool_height" />
+                <TextView
+                    android:id="@+id/tv_result_topic"
+                    android:text="标题"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/tv_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_result_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <View
+                android:layout_margin="@dimen/et_padding"
+                android:background="@color/my_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"/>
+            <TextView
+                android:id="@+id/tv_result_travels"
+                android:gravity="center"
+                android:text="1883篇北京游记"
+                android:textColor="@color/tool_color"
+                android:textSize="@dimen/tv_size"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_height" />
+            <View
+                android:background="@color/my_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tv_padding"/>
+            <View
+                android:background="@color/alpha"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

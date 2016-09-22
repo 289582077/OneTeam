@@ -1010,6 +1010,33 @@ public class Destination {
                 private Object alias_name;
                 private Object travel_tip;
                 private List<PicBean> contents;
+                private User user;
+                private String topic;
+                private String summary;
+
+                public String getSummary() {
+                    return summary;
+                }
+
+                public void setSummary(String summary) {
+                    this.summary = summary;
+                }
+
+                public String getTopic() {
+                    return topic;
+                }
+
+                public void setTopic(String topic) {
+                    this.topic = topic;
+                }
+
+                public User getUser() {
+                    return user;
+                }
+
+                public void setUser(User user) {
+                    this.user = user;
+                }
 
                 public List<PicBean> getContents() {
                     return contents;
@@ -1268,6 +1295,44 @@ public class Destination {
 
                 public void setPhoto(PhotoBean photo) {
                     this.photo = photo;
+                }
+                public static class User{
+                    private int id;
+                    private String name;
+                    private String photo_url;
+                    private int level;
+
+                    public int getId() {
+                        return id;
+                    }
+
+                    public void setId(int id) {
+                        this.id = id;
+                    }
+
+                    public String getName() {
+                        return name;
+                    }
+
+                    public void setName(String name) {
+                        this.name = name;
+                    }
+
+                    public String getPhoto_url() {
+                        return photo_url;
+                    }
+
+                    public void setPhoto_url(String photo_url) {
+                        this.photo_url = photo_url;
+                    }
+
+                    public int getLevel() {
+                        return level;
+                    }
+
+                    public void setLevel(int level) {
+                        this.level = level;
+                    }
                 }
                 public static class PicBean{
                     private int id;

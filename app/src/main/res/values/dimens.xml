@@ -25,4 +25,7 @@
     <dimen name="picNum_marginTop">10dp</dimen>
     <dimen name="tv_radius">10dp</dimen>
     <dimen name="tv_padding">5dp</dimen>
+    <dimen name="big_tv_size">25sp</dimen>
+    <dimen name="tv_height_small">40dp</dimen>
+    <dimen name="tv_size_small">15sp</dimen>
 </resources>
