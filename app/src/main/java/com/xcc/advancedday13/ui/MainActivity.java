@@ -50,6 +50,10 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             TabLayout.Tab tab = mTablayout.newTab();
             tab.setCustomView(tabItem);
             mTablayout.addTab(tab);
+            if (i==0) {
+                title.setVisibility(View.GONE);
+                image.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -60,7 +64,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mViewPager.setAdapter(adapter);
 
         //mTablayout.setupWithViewPager(mViewPager);
-       mTablayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        //mTablayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablayout));
         mTablayout.setOnTabSelectedListener(this);
 
@@ -113,6 +117,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+
+        mViewPager.setCurrentItem(tab.getPosition());
         TextView title = (TextView) tab.getCustomView().findViewById(R.id.tab_item_title);
         ImageView image = (ImageView) tab.getCustomView().findViewById(R.id.tab_item_image);
 
@@ -139,6 +145,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         switch (v.getId()) {
             case R.id.tv_main_search:
                 Intent intent = new Intent(this, SearchActivity.class);
+
                 startActivity(intent);
                 break;
         }
