@@ -33,6 +33,7 @@ import com.xcc.advancedday13.model.City;
 import com.xcc.advancedday13.model.HeaderMsg;
 import com.xcc.advancedday13.model.NearByCity;
 import com.xcc.advancedday13.ui.CityDetailActivity;
+import com.xcc.advancedday13.ui.SearchResultActivity;
 import com.xcc.advancedday13.widget.CustomGridView;
 import com.xcc.advancedday13.widget.CustomRecyclerView;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -259,7 +260,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onItemClick(City.DataBean.DestinationsBean data) {
 
-        Intent intent = new Intent(getActivity(), CityDetailActivity.class);
+        Intent intent = new Intent(getActivity(), SearchResultActivity.class);
 
         int id = data.getId();
         intent.putExtra("id",id);
