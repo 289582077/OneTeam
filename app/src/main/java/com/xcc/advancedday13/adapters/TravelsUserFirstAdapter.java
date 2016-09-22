@@ -99,6 +99,7 @@ public class TravelsUserFirstAdapter extends RecyclerView.Adapter<TravelsUserFir
         for (int i = 1; i < contents.size(); i++) {
             ImageView imageView = new ImageView(context);
             holder.travelsUserFirstRecyclerItemActivityContentsPhotoUrlOthers.addView(imageView);
+            imageView.setImageResource(R.mipmap.travels_image_default);
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             marginLayoutParams.width = PxUtils.dp2px(context, 120);
