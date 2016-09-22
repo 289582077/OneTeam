@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.xcc.advancedday13.ui.SearchResultActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_height">
+        <TextView
+            android:text="北京"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/search_marginLeft"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/tv_size"
+            android:background="@color/tool_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageButton
+            android:background="@color/alpha"
+            android:src="@mipmap/default_back_icon"
+            android:layout_width="@dimen/ib_width"
+            android:layout_height="@dimen/tool_height" />
+
+    </FrameLayout>
+    <android.support.v4.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
