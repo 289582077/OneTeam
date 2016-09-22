@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,119 +7,138 @@
     tools:context="com.xcc.advancedday13.ui.UserActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-        <android.support.v7.widget.Toolbar
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/alpha">
+            android:layout_height="200dp"
+            android:fitsSystemWindows="true"
+
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/user_back"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/default_back_icon"/>
-                <TextView
+                    android:src="@mipmap/travels_image_default"/>
+                <FrameLayout
+                    android:id="@+id/user_icon_frame"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:textSize="20sp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="55dp"
-                    android:text="@string/user_center"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp">
+                    <ImageView
+                        android:id="@+id/user_icon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:padding="10dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:id="@+id/user_icon_v"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/icon_user_v"
+                        android:layout_marginLeft="50dp"
+                        android:visibility="gone"
+                        android:layout_marginTop="50dp"/>
+                </FrameLayout>
                 <TextView
-                    android:id="@+id/user_to_follow"
+                    android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:text="@string/text_default"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/user_icon_frame"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/user_name">
+                    <TextView
+                        android:id="@+id/user_followings_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/text_default"/>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/white"/>
+                    <TextView
+                        android:id="@+id/user_followers_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/text_default"/>
+                </LinearLayout>
 
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
+            <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@mipmap/travels_image_default"/>
-            <FrameLayout
-                android:id="@+id/user_icon_frame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp">
-                <ImageView
-                    android:id="@+id/user_icon"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_launcher"
-                    android:scaleType="fitXY" />
-                <ImageView
-                    android:id="@+id/user_icon_v"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/icon_user_v"
-                    android:layout_marginLeft="50dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="50dp"/>
-            </FrameLayout>
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:text="@string/text_default"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/user_icon_frame"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/user_name">
-                <TextView
-                    android:id="@+id/user_followings_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="@string/text_default"/>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@color/white"/>
-                <TextView
-                    android:id="@+id/user_followers_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="@string/text_default"/>
-            </LinearLayout>
+                android:layout_height="50dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:background="@color/alpha">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/user_back"
+                        android:layout_width="20dp"
+                        android:layout_height="10dp"
+                        android:scaleType="fitXY"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/default_back_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="55dp"
+                        android:text="@string/user_center"/>
+                    <TextView
+                        android:id="@+id/user_to_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:text="@string/text_default"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"/>
 
-        </RelativeLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+        <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
+            android:id="@+id/user_tab"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:fillViewport="false"
+            app:layout_scrollFlags="scroll"
+            android:background="#ffffff"
+            android:layout_gravity="bottom">
+        </com.lhh.apst.library.AdvancedPagerSlidingTabStrip>
 
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <android.support.v4.view.ViewPager
             android:id="@+id/user_grouped"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
         </android.support.v4.view.ViewPager>
-    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
