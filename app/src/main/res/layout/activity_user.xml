@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/user_header_photo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
@@ -54,6 +55,15 @@
                     android:text="@string/text_default"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/user_icon_frame"/>
+                <ImageView
+                    android:id="@+id/user_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/user_name"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@+id/user_icon_frame" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,7 +116,7 @@
                         android:layout_gravity="center"
                         android:textSize="18sp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="55dp"
+                        android:layout_marginLeft="35dp"
                         android:text="@string/user_center"/>
                     <TextView
                         android:id="@+id/user_to_follow"

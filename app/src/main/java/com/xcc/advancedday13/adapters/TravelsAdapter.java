@@ -111,6 +111,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
         for (int i = 1; i < photoContentsUrl.size(); i++) {
             ImageView imageView = new ImageView(context);
             holder.travelsActivityContentsPhotoUrlOthers.addView(imageView);
+            imageView.setImageResource(R.mipmap.travels_image_default);
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             marginLayoutParams.width = PxUtils.dp2px(context, 120);

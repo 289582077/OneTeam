@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ public class UserViewPagerFirstFragment extends BaseFragment implements Handler.
     private int id;
     private int pageIndex=1;
     private Handler mHandler;
+    private PullToRefreshRecyclerView mUserPtrrv;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class UserViewPagerFirstFragment extends BaseFragment implements Handler.
 
     private void initView() {
         mHandler=new Handler(this);
-        PullToRefreshRecyclerView mUserPtrrv = (PullToRefreshRecyclerView) layout.findViewById(R.id.travels_user_ptrrv);
+        mUserPtrrv = (PullToRefreshRecyclerView) layout.findViewById(R.id.travels_user_ptrrv);
         mUserPtrrv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new TravelsUserFirstAdapter(getActivity(), null);
         adapter.setReadAllClicked(this);
@@ -56,7 +59,11 @@ public class UserViewPagerFirstFragment extends BaseFragment implements Handler.
     @Override
     public void onReadAllClicked(UserActivityModel.DataBean item) {
         item.setReadAllClicked(true);
+        if (mUserPtrrv.getRecyclerView().getScrollState()== RecyclerView.SCROLL_STATE_IDLE&&!mUserPtrrv.getRecyclerView().isComputingLayout()) {
+            adapter.notifyDataSetChanged();
+        }
     }
+
 
     enum Selected{
         UP,DOWN
