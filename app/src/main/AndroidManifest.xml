@@ -47,7 +47,8 @@
 
         <activity android:name=".ui.CityDetailActivity" />
         <activity android:name=".ui.UserActivity" />
-        <activity android:name=".ui.SearchResultActivity"></activity>
+        <activity android:name=".ui.SearchResultActivity" />
+        <activity android:name=".ui.PicActivity"></activity>
     </application>
 
 </manifest>

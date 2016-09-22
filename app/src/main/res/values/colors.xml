@@ -14,5 +14,5 @@
     <color name="text_color_one" >#8800ffff</color>
     <color name="View_bg" >#d1d0d0</color>
     <color name="black">#000000</color>
-    <color name="half_alpha">#77aeaeae</color>
+    <color name="half_alpha">#55aeaeae</color>
 </resources>
