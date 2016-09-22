@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,7 +25,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class SearchActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener ,Handler.Callback{
+public class SearchActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener ,Handler.Callback, View.OnFocusChangeListener {
 
     private static final int ID = 10;
     private ImageButton mBack;
@@ -46,12 +47,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         mBack = (ImageButton) findViewById(R.id.ib_search_back);
         mEt = (EditText) findViewById(R.id.et_search_content);
         mTv = (TextView) findViewById(R.id.tv_cancel_search);
-//        mIv = (ImageView) findViewById(R.id.iv_result);
+
 
         mBack.setOnClickListener(this);
         mEt.setOnClickListener(this);
         mTv.setOnClickListener(this);
         mEt.setOnEditorActionListener(this);
+        mEt.setOnFocusChangeListener(this);
     }
 
     @Override
@@ -125,5 +127,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 }

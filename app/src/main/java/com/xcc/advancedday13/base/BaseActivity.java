@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.xcc.advancedday13.model.Destination;
+
 /**
  * Created by bukeyishidecheng on 16/9/20.
  */

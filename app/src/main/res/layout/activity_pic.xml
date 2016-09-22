@@ -6,9 +6,11 @@
     android:background="@android:color/background_dark"
     tools:context="com.xcc.advancedday13.ui.PicActivity">
     <android.support.v4.view.ViewPager
+        android:id="@+id/vp_picShow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <TextView
+        android:id="@+id/tv_numTotal"
         android:text="1/9"
         android:background="@drawable/tv_bg"
         android:layout_centerHorizontal="true"
