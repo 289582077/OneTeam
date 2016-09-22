@@ -3,7 +3,9 @@ package com.xcc.advancedday13.ui.fragments;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.os.EnvironmentCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -34,15 +37,19 @@ import com.xcc.advancedday13.model.HeaderMsg;
 import com.xcc.advancedday13.model.NearByCity;
 import com.xcc.advancedday13.ui.CityDetailActivity;
 import com.xcc.advancedday13.ui.SearchResultActivity;
+import com.xcc.advancedday13.utils.NetUtils;
 import com.xcc.advancedday13.widget.CustomGridView;
 import com.xcc.advancedday13.widget.CustomRecyclerView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import org.xutils.DbManager;
 import org.xutils.common.Callback;
+import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +73,21 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     private NearByGridViewAdapter nearByAdapter;
     private StrategyHeaderAdapter mHeaderAdapter;
 
+
+    DbManager.DaoConfig daoConfig=new DbManager.DaoConfig()
+            .setDbVersion(1)
+            .setDbName("travel")
+            .setAllowTransaction(true)
+            //.setDbDir(new File("/sdcard"));
+            .setDbDir(new File(Environment.getExternalStorageDirectory()+File.separator+"team"));
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layout=inflater.inflate(R.layout.fragment_strategy,container,false);
+        Log.e(TAG, "onCreateView: "+Environment.getExternalStorageDirectory()+File.separator+"team");
         return layout;
     }
 
@@ -122,11 +140,11 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
             }
             @Override
             public void onResponse(String response, int id) {
-                Log.e(TAG, "onResponse: "+response);
+                //Log.e(TAG, "onResponse: "+response);
                 Gson gson = new Gson();
                 HeaderMsg headerMsg = gson.fromJson(response, HeaderMsg.class);
                 int size = headerMsg.getData().size();
-                Log.e(TAG, "onResponse: "+size);
+               // Log.e(TAG, "onResponse: "+size);
                 List<View> data=new ArrayList<>();
                 for (int i = 0; i < size; i++) {
                     ImageView imageView = new ImageView(getActivity());
@@ -163,36 +181,167 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void setupView() {
-        RequestParams params=new RequestParams(HttpConstant.STRATEGY_URL);
 
-        x.http().get(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Log.e(TAG, "onSuccess: ");
-                Gson gson = new Gson();
-                City city = gson.fromJson(result, City.class);
-                adapter.updateRes(city.getData());
+        if (NetUtils.isConnected(getActivity())) {
 
+            RequestParams params=new RequestParams(HttpConstant.STRATEGY_URL);
+
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.e(TAG, "onSuccess: ");
+                    Gson gson = new Gson();
+                    City city = gson.fromJson(result, City.class);
+                    List<City.DataBean> data = city.getData();
+                    adapter.updateRes(data);
+
+                    //往数据库存数据
+                    DbManager db = x.getDb(daoConfig);
+                    for (City.DataBean cd:data){
+                        try {
+                            Log.e(TAG, "onSuccess: 往数据库存储数据"+cd);
+                            db.saveOrUpdate(cd);
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    for (int i = 0; i < data.size(); i++) {
+                        for (City.DataBean.DestinationsBean cddb : data.get(i).getDestinations()) {
+                            try {
+                                db.saveOrUpdate(cddb);
+                            } catch (DbException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+//                    for (City.DataBean.DestinationsBean cddb :data.get ) {
+//
+//                    }
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    Log.e(TAG, "onError: "+ex.getMessage());
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+                    Log.e(TAG, "onCancelled: ");
+
+                }
+
+                @Override
+                public void onFinished() {
+                    Log.e(TAG, "onFinished: ");
+
+                }
+            });
+
+        }else {
+            //Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_SHORT).show();
+
+
+            //从数据库查找数据
+            DbManager db = x.getDb(daoConfig);
+
+            //City.DataBean dataBean = new City.DataBean();
+//        dataBean.setParentId(11);
+//        City.DataBean.DestinationsBean destinationsBean = new City.DataBean.DestinationsBean();
+//        destinationsBean.setParentId(dataBean.getParentId());
+
+            try {
+                List<City.DataBean> dataBean = db.selector(City.DataBean.class).findAll();
+                for (int i = 0; i < dataBean.size(); i++) {
+                   // dataBean.get(i).setParentId(i);
+                    City.DataBean.DestinationsBean destinationsBean = new City.DataBean.DestinationsBean();
+                    destinationsBean.setParentId(dataBean.get(i).getParentId());
+                }
+
+                Log.e(TAG, "setupView: 从数据库获取数据");
+                if (dataBean != null && dataBean.size() != 0) {
+                    adapter.updateRes(dataBean);
+                } else {
+
+                    getDataForNet();
+                }
+
+            } catch (DbException e) {
+                e.printStackTrace();
             }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e(TAG, "onError: "+ex.getMessage());
 
-            }
+        }
+    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-                Log.e(TAG, "onCancelled: ");
+    private void getDataForNet() {
+        Log.e(TAG, "getDataForNet: 联网下载数据");
+        //判断是否有网
+        if (NetUtils.isConnected(getActivity())) {
 
-            }
+            RequestParams params=new RequestParams(HttpConstant.STRATEGY_URL);
 
-            @Override
-            public void onFinished() {
-                Log.e(TAG, "onFinished: ");
+            x.http().get(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    Log.e(TAG, "onSuccess: ");
+                    Gson gson = new Gson();
+                    City city = gson.fromJson(result, City.class);
+                    List<City.DataBean> data = city.getData();
+                    adapter.updateRes(data);
 
-            }
-        });
+                    //往数据库存数据
+                    DbManager db = x.getDb(daoConfig);
+                    for (City.DataBean cd:data){
+                        try {
+                            Log.e(TAG, "onSuccess: 往数据库存储数据"+cd);
+                            db.saveOrUpdate(cd);
+                        } catch (DbException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    for (int i = 0; i < data.size(); i++) {
+                        for (City.DataBean.DestinationsBean cddb : data.get(i).getDestinations()) {
+                            try {
+                                db.saveOrUpdate(cddb);
+                            } catch (DbException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+//                    for (City.DataBean.DestinationsBean cddb :data.get ) {
+//
+//                    }
+
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    Log.e(TAG, "onError: "+ex.getMessage());
+
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+                    Log.e(TAG, "onCancelled: ");
+
+                }
+
+                @Override
+                public void onFinished() {
+                    Log.e(TAG, "onFinished: ");
+
+                }
+            });
+
+        }else {
+            Toast.makeText(getActivity(), "没有网络", Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 
@@ -238,7 +387,7 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
 
                             @Override
                             public void onResponse(String response, int id) {
-                                Log.e(TAG, "onResponse: "+response);
+                                //Log.e(TAG, "onResponse: "+response);
                                 Gson gson = new Gson();
                                 NearByCity nearByCity = gson.fromJson(response, NearByCity.class);
                                 //Log.e(TAG, "onResponse: "+nearByCity.getData().size());

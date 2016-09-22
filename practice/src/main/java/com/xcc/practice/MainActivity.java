@@ -1,5 +1,6 @@
 package com.xcc.practice;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.ll_setting:
+                Intent intent = new Intent(this, SettingActivity.class);
 
+                startActivity(intent);
 
 
 
