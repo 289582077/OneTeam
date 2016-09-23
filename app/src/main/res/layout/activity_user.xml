@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:fitsSystemWindows="true"
-
+            app:contentScrim="@color/swap_holo_green_bright"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -140,6 +140,7 @@
             android:fillViewport="false"
             app:layout_scrollFlags="scroll"
             android:background="#ffffff"
+            app:apTabIndicatorHeight="0dp"
             android:layout_gravity="bottom">
         </com.lhh.apst.library.AdvancedPagerSlidingTabStrip>
 

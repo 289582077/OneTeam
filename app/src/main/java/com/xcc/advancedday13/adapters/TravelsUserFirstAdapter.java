@@ -33,15 +33,13 @@ public class TravelsUserFirstAdapter extends RecyclerView.Adapter<TravelsUserFir
     private ImageOptions options;
     private OnReadAllClicked readAllClicked;
     private RecyclerView recyclerView;
-    private OnUserIconClicked userIconClicked;
+
 
     public void setReadAllClicked(OnReadAllClicked readAllClicked) {
         this.readAllClicked = readAllClicked;
     }
 
-    public void setUserIconClicked(OnUserIconClicked userIconClicked) {
-        this.userIconClicked = userIconClicked;
-    }
+
 
     public TravelsUserFirstAdapter(Context context, List<UserActivityModel.DataBean> data) {
         this.context = context;
@@ -235,31 +233,7 @@ public class TravelsUserFirstAdapter extends RecyclerView.Adapter<TravelsUserFir
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.travels_recycler_item_activity_photo_url:
-//                userIconClicked.onUserIconClicked(data.get(recyclerView.getChildAdapterPosition((LinearLayout) v.getParent().getParent().getParent())));
-                break;
-            case R.id.travels_recycler_item_name:
-                break;
-            case R.id.travels_recycler_item_follow:
-                break;
-            case R.id.travels_recycler_item_activity_contents_photo_url_one:
-                break;
-            case R.id.travels_recycler_item_read_all:
-                int childAdapterPosition = recyclerView.getChildAdapterPosition((LinearLayout) v.getParent().getParent());
-//                readAllClicked.onReadAllClicked(data.get(childAdapterPosition));
-                break;
-            case R.id.travels_recycler_item_activity_districts_to_detail:
-                break;
-            case R.id.travels_recycler_item_activity_likes_count:
-                break;
-            case R.id.travels_recycler_item_activity_comments_count:
-                break;
-            case R.id.travels_recycler_item_activity_favorites_count:
-                break;
-            case R.id.travels_recycler_item_more:
-                break;
-        }
+
     }
 
 
@@ -267,9 +241,6 @@ public class TravelsUserFirstAdapter extends RecyclerView.Adapter<TravelsUserFir
         void onReadAllClicked(UserActivityModel.DataBean item);
     }
 
-    public interface OnUserIconClicked {
-        void onUserIconClicked(UserActivityModel.DataBean item);
-    }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.travels_user_first_recycler_item_activity_contents_photo_url_one)

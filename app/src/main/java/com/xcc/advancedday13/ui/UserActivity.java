@@ -122,7 +122,7 @@ public class UserActivity extends AppCompatActivity {
         AdvancedPagerSlidingTabStrip tabStrip = (AdvancedPagerSlidingTabStrip) findViewById(R.id.user_tab);
         mViewPager = (ViewPager) findViewById(R.id.user_grouped);
         mViewPager.setAdapter(new UserViewPagerAdapter(getSupportFragmentManager(), getData(), this));
-//        tabStrip.setViewPager(mViewPager);
+        tabStrip.setViewPager(mViewPager);
     }
 
     public List<Fragment> getData() {
