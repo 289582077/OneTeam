@@ -45,6 +45,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.xutils.DbManager;
 import org.xutils.common.Callback;
+import org.xutils.db.sqlite.WhereBuilder;
 import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -205,9 +206,12 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
                             e.printStackTrace();
                         }
                     }
+                    Log.e(TAG, "onSuccess: "+data.size());
                     for (int i = 0; i < data.size(); i++) {
                         for (City.DataBean.DestinationsBean cddb : data.get(i).getDestinations()) {
                             try {
+                                Log.e(TAG, "onSuccess: ParentId: "+data.get(i).getParentId());
+                                cddb.setParentId(data.get(i).getParentId());
                                 db.saveOrUpdate(cddb);
                             } catch (DbException e) {
                                 e.printStackTrace();
@@ -253,20 +257,20 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
 //        destinationsBean.setParentId(dataBean.getParentId());
 
             try {
-                List<City.DataBean> dataBean = db.selector(City.DataBean.class).findAll();
-                for (int i = 0; i < dataBean.size(); i++) {
-                   // dataBean.get(i).setParentId(i);
-                    City.DataBean.DestinationsBean destinationsBean = new City.DataBean.DestinationsBean();
-                    destinationsBean.setParentId(dataBean.get(i).getParentId());
-                }
-
                 Log.e(TAG, "setupView: 从数据库获取数据");
+                List<City.DataBean> dataBean = db.selector(City.DataBean.class).offset(0).limit(5).findAll();
                 if (dataBean != null && dataBean.size() != 0) {
+                    for (int i = 0; i < dataBean.size(); i++) {
+                        //Log.e(TAG, "setupView: 获取字表");
+                        List<City.DataBean.DestinationsBean> destinationsBeen = dataBean.get(i).getCityDataBeanDestinationsBean(db);
+                        //Log.e(TAG, "setupView: "+ destinationsBeen.get(i).getPhoto_url());
+                        dataBean.get(i).setDestinations(destinationsBeen);
+                    }
                     adapter.updateRes(dataBean);
                 } else {
-
                     getDataForNet();
                 }
+                //List<City.DataBean.DestinationsBean> destinationsBeen = db.selector(City.DataBean.DestinationsBean.class).findAll();
 
             } catch (DbException e) {
                 e.printStackTrace();
@@ -305,6 +309,8 @@ public class StrategyFragment extends BaseFragment implements View.OnClickListen
                     for (int i = 0; i < data.size(); i++) {
                         for (City.DataBean.DestinationsBean cddb : data.get(i).getDestinations()) {
                             try {
+                                Log.e(TAG, "onSuccess: "+data.get(i).getParentId());
+                                cddb.setParentId(data.get(i).getParentId());
                                 db.saveOrUpdate(cddb);
                             } catch (DbException e) {
                                 e.printStackTrace();

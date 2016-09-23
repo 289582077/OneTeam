@@ -45,9 +45,8 @@ public class City {
 
     @Table(name = "dataBean")
     public static class DataBean {
-        @Column(name = "parenrId",isId = true,autoGen =true)
+        @Column(name = "parentId",isId = true,autoGen =true)
         private int parentId;
-
         @Column(name = "title_name")
         private String name;
         @Column(name = "button_text")
@@ -56,7 +55,7 @@ public class City {
 //            return db.findById(City.class,message);
 //        }
         public List<City.DataBean.DestinationsBean> getCityDataBeanDestinationsBean(DbManager db) throws DbException {
-            return db.selector(City.DataBean.DestinationsBean.class).where("message","=",this.parentId).findAll();
+            return db.selector(City.DataBean.DestinationsBean.class).where("parentId","=",this.parentId).findAll();
         }
         private String region;
 
