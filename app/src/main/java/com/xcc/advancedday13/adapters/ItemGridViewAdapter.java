@@ -72,6 +72,7 @@ public class ItemGridViewAdapter extends RecyclerView.Adapter<ItemGridViewAdapte
 
             Picasso.with(context).load(data.get(position).getPhoto_url())
                     .placeholder(R.mipmap.ic_launcher)
+                    .resize(120,120)
                     .into(holder.image);
             //Log.e(TAG, "onBindViewHolder: "+data.get(position).getPhoto_url());
             //x.image().bind(holder.image,data.get(position).getPhoto_url());

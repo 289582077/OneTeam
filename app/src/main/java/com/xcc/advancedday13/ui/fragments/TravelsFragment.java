@@ -27,7 +27,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,Handler.Callback, TravelsAdapter.OnReadAllClicked, TravelsAdapter.OnUserIconClicked {
+public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener,Handler.Callback, TravelsAdapter.OnReadAllClicked, TravelsAdapter.OnUserIconClicked, TravelsAdapter.OnUserMoreClicked {
 
     private static final int UP_DATE = 100;
     private static final int DOWN = 200;
@@ -54,6 +54,7 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
         adapter = new TravelsAdapter(getActivity(), null);
         adapter.setReadAllClicked(this);
         adapter.setUserIconClicked(this);
+        adapter.setUserMoreClicked(this);
         mPtrrv.setAdapter(adapter);
         setupView(Selected.DOWN);
     }
@@ -63,6 +64,11 @@ public class TravelsFragment extends BaseFragment implements SwipeRefreshLayout.
         Intent intent = new Intent(getActivity(), UserActivity.class);
         intent.putExtra("id",item.getActivity().getUser().getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onUserMoreClicked(TravelRoot.DataBean item, View view) {
+        
     }
 
 

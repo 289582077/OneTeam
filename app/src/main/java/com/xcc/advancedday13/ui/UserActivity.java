@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
 import com.squareup.picasso.Picasso;
+import com.viewpagerindicator.IconPageIndicator;
 import com.xcc.advancedday13.R;
 import com.xcc.advancedday13.adapters.UserViewPagerAdapter;
 import com.xcc.advancedday13.constants.HttpConstant;
@@ -119,10 +119,12 @@ public class UserActivity extends AppCompatActivity {
 
     private void initView() {
 
-        AdvancedPagerSlidingTabStrip tabStrip = (AdvancedPagerSlidingTabStrip) findViewById(R.id.user_tab);
+//        AdvancedPagerSlidingTabStrip tabStrip = (AdvancedPagerSlidingTabStrip) findViewById(R.id.user_tab);
+        IconPageIndicator tabStrip = (IconPageIndicator) findViewById(R.id.user_tab);
         mViewPager = (ViewPager) findViewById(R.id.user_grouped);
+
         mViewPager.setAdapter(new UserViewPagerAdapter(getSupportFragmentManager(), getData(), this));
-//        tabStrip.setViewPager(mViewPager);
+        tabStrip.setViewPager(mViewPager);
     }
 
     public List<Fragment> getData() {
