@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.xcc.advancedday13.R;
@@ -41,7 +42,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         Drawable drawable = getResources().getDrawable(R.drawable.pop_bg);
         pw.setBackgroundDrawable(drawable);
         pw.setWidth(widthPixels/2);
-        pw.setHeight(heightPixels/5);
+        pw.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
         pw.setFocusable(true);
         pw.setContentView(popView);
         return layout;

@@ -36,6 +36,11 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
     private OnReadAllClicked readAllClicked;
     private RecyclerView recyclerView;
     private OnUserIconClicked userIconClicked;
+    private OnUserMoreClicked userMoreClicked;
+
+    public void setUserMoreClicked(OnUserMoreClicked userMoreClicked) {
+        this.userMoreClicked = userMoreClicked;
+    }
 
     public void setReadAllClicked(OnReadAllClicked readAllClicked) {
         this.readAllClicked = readAllClicked;
@@ -166,7 +171,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
                 holder.travelsReadAll.setVisibility(View.GONE);
             }
         }
-
+        holder.travelsMore.setOnClickListener(this);
         holder.travelsReadAll.setOnClickListener(this);
         List<TravelRoot.DataBean.ActivityBean.DistrictsBean> districts = data.get(position).getActivity().getDistricts();
         holder.travelsActivityDistricts.removeAllViews();
@@ -289,6 +294,7 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
             case R.id.travels_recycler_item_activity_favorites_count:
                 break;
             case R.id.travels_recycler_item_more:
+                userMoreClicked.onUserMoreClicked(data.get(recyclerView.getChildAdapterPosition((LinearLayout) v.getParent().getParent().getParent())),v);
                 break;
         }
     }
@@ -339,5 +345,8 @@ public class TravelsAdapter extends RecyclerView.Adapter<TravelsAdapter.ViewHold
     }
     public interface OnUserIconClicked {
         void onUserIconClicked(TravelRoot.DataBean item);
+    }
+    public interface OnUserMoreClicked {
+        void onUserMoreClicked(TravelRoot.DataBean item,View view);
     }
 }

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#1b5e05</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="my_divider_color">#d9d2d2</color>
+    <color name="my_divider_color">#f1eeee</color>
     <color name="alpha">#00ffffff</color>
     <color name="tool_color">#00ffff</color>
     <color name="pop_bg">#ffffff</color>

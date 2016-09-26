@@ -13,6 +13,7 @@
             android:layout_height="@dimen/tool_height">
             <TextView
                 android:id="@+id/tv_title_city_name"
+
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:textColor="@color/white"
                 android:paddingLeft="@dimen/search_marginLeft"
@@ -44,7 +45,7 @@
                 <ImageView
                     android:id="@+id/iv_result_cover"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/travels_image_default"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/iv_height" />
                 <LinearLayout
@@ -132,6 +133,12 @@
                 android:background="@color/my_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_width"/>
+            <TextView
+                android:text="相关氢游记"
+                android:layout_marginLeft="@dimen/et_padding"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_height" />
             <RelativeLayout
                 android:layout_margin="@dimen/et_padding"
                 android:layout_width="match_parent"
@@ -159,14 +166,14 @@
                     android:id="@+id/tv_result_author"
                     android:text="作者"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/tool_height" />
+                    android:layout_height="@dimen/tv_height_small" />
                 <TextView
                     android:id="@+id/tv_result_topic"
                     android:text="标题"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/tv_size"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="@dimen/tv_height_small" />
                 <TextView
                     android:id="@+id/tv_result_description"
                     android:layout_width="match_parent"
@@ -180,7 +187,6 @@
             <TextView
                 android:id="@+id/tv_result_travels"
                 android:gravity="center"
-                android:text="1883篇北京游记"
                 android:textColor="@color/tool_color"
                 android:textSize="@dimen/tv_size"
                 android:layout_width="match_parent"

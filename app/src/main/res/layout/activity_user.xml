@@ -107,6 +107,7 @@
                         android:layout_width="20dp"
                         android:layout_height="10dp"
                         android:scaleType="fitXY"
+
                         android:layout_centerVertical="true"
                         android:src="@mipmap/default_back_icon"/>
                     <TextView
@@ -133,7 +134,7 @@
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
-        <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
+        <com.viewpagerindicator.IconPageIndicator
             android:id="@+id/user_tab"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -141,8 +142,9 @@
             app:layout_scrollFlags="scroll"
             android:background="#ffffff"
             app:apTabIndicatorHeight="0dp"
+
             android:layout_gravity="bottom">
-        </com.lhh.apst.library.AdvancedPagerSlidingTabStrip>
+        </com.viewpagerindicator.IconPageIndicator>
 
     </android.support.design.widget.AppBarLayout>
 
