@@ -16,7 +16,6 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_topList_item"
-            android:text="北极"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:padding="@dimen/et_padding"
@@ -25,7 +24,6 @@
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_topList_item2"
-            android:text="北极"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
